@@ -474,6 +474,7 @@ pub fn core_main() -> Option<Vec<String>> {
             // call connection manager to establish connections
             // meanwhile, return true to call flutter window to show control panel
             crate::ui_interface::start_option_status_sync();
+            // crate::flutter::connection_manager::start_cm_no_ui();
             return None;
         } else if args[0] == "--cm-no-ui" {
             #[cfg(feature = "flutter")]

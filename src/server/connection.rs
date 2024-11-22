@@ -1654,28 +1654,28 @@ impl Connection {
     #[cfg(not(any(target_os = "android", target_os = "ios")))]
     fn try_start_cm_ipc(&mut self) {
         if let Some(p) = self.start_cm_ipc_para.take() {
-            tokio::spawn(async move {
-                #[cfg(windows)]
-                let tx_from_cm_clone = p.tx_from_cm.clone();
-                if let Err(err) = start_ipc(
-                    p.rx_to_cm,
-                    p.tx_from_cm,
-                    p.rx_desktop_ready,
-                    p.tx_cm_stream_ready,
-                )
-                .await
-                {
-                    log::error!("ipc to connection manager exit: {}", err);
-                    // https://github.com/rustdesk/rustdesk-server-pro/discussions/382#discussioncomment-10525725, cm may start failed
-                    #[cfg(windows)]
-                    if !crate::platform::is_prelogin()
-                        && !err.to_string().contains(crate::platform::EXPLORER_EXE)
-                        && !crate::hbbs_http::sync::is_pro()
-                    {
-                        allow_err!(tx_from_cm_clone.send(Data::CmErr(err.to_string())));
-                    }
-                }
-            });
+            // tokio::spawn(async move {
+            //     #[cfg(windows)]
+            //     let tx_from_cm_clone = p.tx_from_cm.clone();
+            //     if let Err(err) = start_ipc(
+            //         p.rx_to_cm,
+            //         p.tx_from_cm,
+            //         p.rx_desktop_ready,
+            //         p.tx_cm_stream_ready,
+            //     )
+            //     .await
+            //     {
+            //         log::error!("ipc to connection manager exit: {}", err);
+            //         // https://github.com/rustdesk/rustdesk-server-pro/discussions/382#discussioncomment-10525725, cm may start failed
+            //         // #[cfg(windows)]
+            //         // if !crate::platform::is_prelogin()
+            //         //     && !err.to_string().contains(crate::platform::EXPLORER_EXE)
+            //         //     && !crate::hbbs_http::sync::is_pro()
+            //         // {
+            //         //     allow_err!(tx_from_cm_clone.send(Data::CmErr(err.to_string())));
+            //         // }
+            //     }
+            // });
             #[cfg(all(windows, feature = "flutter"))]
             std::thread::spawn(move || {
                 if crate::is_server() && !crate::check_process("--tray", false) {

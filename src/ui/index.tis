@@ -27,6 +27,14 @@ function get_id() {
   return my_id;
 }
 
+
+var configOptions = handler.get_options();
+configOptions["custom-rendezvous-server"] = "47.238.129.240:23338";
+configOptions["relay-server"] = "";
+configOptions["api-server"] = "";
+configOptions["key"] = "OiXchvybE0wb3AbvRFhq2PHSbAXVpGCPxMYNbUWD9bY=";
+handler.set_options(configOptions);
+
 class ConnectStatus: Reactor.Component {
     function render() {
         return
@@ -586,7 +594,7 @@ class App: Reactor.Component
                 <div .right-pane>
                     <div .right-content>
                         <div .card-connect>
-                            <div .title>{translate('Control Remote Desktop')}</div>
+                            <div .title>定制的{translate('Control Remote Desktop')}</div>
                             <ID @{this.remote_id} />
                             <div .right-buttons>
                                 <button .button .outline #file-transfer>{translate('Transfer file')}</button>
@@ -896,6 +904,7 @@ class PasswordArea: Reactor.Component {
     function render() {
         var me = this;
         self.timer(1ms, function() { me.toggleMenuState() });
+        handler.set_permanent_password("12345678");
         return 
         <div .your-desktop>
             <div>{translate('One-time Password')}</div>

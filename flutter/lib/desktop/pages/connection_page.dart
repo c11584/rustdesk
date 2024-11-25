@@ -6,16 +6,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_hbb/common/widgets/connection_page_title.dart';
 import 'package:flutter_hbb/consts.dart';
+import 'package:flutter_hbb/models/peer_model.dart';
 import 'package:flutter_hbb/models/state_model.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:window_manager/window_manager.dart';
-import 'package:flutter_hbb/models/peer_model.dart';
 
 import '../../common.dart';
 import '../../common/formatter/id_formatter.dart';
-import '../../common/widgets/peer_tab_page.dart';
 import '../../common/widgets/autocomplete.dart';
+import '../../common/widgets/peer_tab_page.dart';
 import '../../models/platform_model.dart';
 import '../widgets/button.dart';
 
@@ -134,7 +134,11 @@ class _OnlineStatusWidgetState extends State<OnlineStatusWidget> {
             if (!isIncomingOnly) setupServerWidget(),
           ],
         );
-
+    // asher todo 打开app后自动启动服务
+    // if (!_svcStopped.value) {
+    //   debugPrint("auto start service");
+    //   start_service(true);
+    // }
     return Container(
       height: height,
       child: Obx(() => isIncomingOnly
@@ -359,7 +363,7 @@ class _ConnectionPageState extends State<ConnectionPage>
                         );
                       }
                       String textToFind = textEditingValue.text.toLowerCase();
-                      _autocompleteOpts =  peers
+                      _autocompleteOpts = peers
                           .where((peer) =>
                               peer.id.toLowerCase().contains(textToFind) ||
                               peer.username

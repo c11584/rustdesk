@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -421,18 +421,18 @@ class _DesktopHomePageState extends State<DesktopHomePage>
   }
 
   Future<Widget> buildHelpCards() async {
-    if (!bind.isCustomClient() &&
-        updateUrl.isNotEmpty &&
-        !isCardClosed &&
-        bind.mainUriPrefixSync().contains('rustdesk')) {
-      return buildInstallCard(
-          "Status",
-          "There is a newer version of ${bind.mainGetAppNameSync()} ${bind.mainGetNewVersion()} available.",
-          "Click to download", () async {
-        final Uri url = Uri.parse('https://rustdesk.com/download');
-        await launchUrl(url);
-      }, closeButton: true);
-    }
+    // if (!bind.isCustomClient() &&
+    //     updateUrl.isNotEmpty &&
+    //     !isCardClosed &&
+    //     bind.mainUriPrefixSync().contains('rustdesk')) {
+    //   return buildInstallCard(
+    //       "Status",
+    //       "There is a newer version of ${bind.mainGetAppNameSync()} ${bind.mainGetNewVersion()} available.",
+    //       "Click to download", () async {
+    //     final Uri url = Uri.parse('https://rustdesk.com/download');
+    //     await launchUrl(url);
+    //   }, closeButton: true);
+    // }
     if (systemError.isNotEmpty) {
       return buildInstallCard("", systemError, "", () {});
     }
@@ -446,12 +446,12 @@ class _DesktopHomePageState extends State<DesktopHomePage>
           bind.mainGotoInstall();
         });
       } else if (bind.mainIsInstalledLowerVersion()) {
-        return buildInstallCard(
-            "Status", "Your installation is lower version.", "Click to upgrade",
-            () async {
-          await rustDeskWinManager.closeAllSubWindows();
-          bind.mainUpdateMe();
-        });
+        // return buildInstallCard(
+        //     "Status", "Your installation is lower version.", "Click to upgrade",
+        //     () async {
+        //   await rustDeskWinManager.closeAllSubWindows();
+        //   bind.mainUpdateMe();
+        // });
       }
     } else if (isMacOS) {
       final isOutgoingOnly = bind.isOutgoingOnly();

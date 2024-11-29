@@ -152,8 +152,8 @@ class _DesktopSettingPageState extends State<DesktopSettingPage>
               Icons.enhanced_encryption_outlined, Icons.enhanced_encryption));
           break;
         case SettingsTabKey.network:
-          //   settingTabs
-          //       .add(_TabInfo(tab, 'Network', Icons.link_outlined, Icons.link));
+          settingTabs
+              .add(_TabInfo(tab, 'Network', Icons.link_outlined, Icons.link));
           break;
         case SettingsTabKey.display:
           settingTabs.add(_TabInfo(tab, 'Display',
@@ -1384,16 +1384,7 @@ class _NetworkState extends State<_Network> with AutomaticKeepAliveClientMixin {
     bool enabled = !locked;
     final scrollController = ScrollController();
 
-    // asher todo
-    // setServerConfig(
-    //     null,
-    //     [RxString(""), RxString(""), RxString("")],
-    //     ServerConfig(
-    //         idServer: "47.238.129.240:23338",
-    //         relayServer: "",
-    //         apiServer: "",
-    //         key: "OiXchvybE0wb3AbvRFhq2PHSbAXVpGCPxMYNbUWD9bY="));
-    final hideServer = true;
+    final hideServer = false;
     // TODO: support web proxy
     final hideProxy = true;
     return DesktopScrollWrapper(
@@ -1451,6 +1442,7 @@ class _NetworkState extends State<_Network> with AutomaticKeepAliveClientMixin {
       ];
 
       submit() async {
+        debugPrint("submit id config");
         bool result = await setServerConfig(
             null,
             errMsgs,

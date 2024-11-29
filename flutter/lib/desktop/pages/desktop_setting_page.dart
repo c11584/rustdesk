@@ -1385,14 +1385,14 @@ class _NetworkState extends State<_Network> with AutomaticKeepAliveClientMixin {
     final scrollController = ScrollController();
 
     // asher todo
-    setServerConfig(
-        null,
-        [RxString(""), RxString(""), RxString("")],
-        ServerConfig(
-            idServer: "47.238.129.240:23338",
-            relayServer: "",
-            apiServer: "",
-            key: "OiXchvybE0wb3AbvRFhq2PHSbAXVpGCPxMYNbUWD9bY="));
+    // setServerConfig(
+    //     null,
+    //     [RxString(""), RxString(""), RxString("")],
+    //     ServerConfig(
+    //         idServer: "47.238.129.240:23338",
+    //         relayServer: "",
+    //         apiServer: "",
+    //         key: "OiXchvybE0wb3AbvRFhq2PHSbAXVpGCPxMYNbUWD9bY="));
     final hideServer = true;
     // TODO: support web proxy
     final hideProxy = true;
@@ -1437,6 +1437,7 @@ class _NetworkState extends State<_Network> with AutomaticKeepAliveClientMixin {
       var relayController = TextEditingController(text: old('relay-server'));
       var apiController = TextEditingController(text: old('api-server'));
       var keyController = TextEditingController(text: old('key'));
+
       final controllers = [
         idController,
         relayController,

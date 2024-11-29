@@ -3216,10 +3216,19 @@ Future<bool> setServerConfig(
     return input;
   }
 
-  config.idServer = removeEndSlash(config.idServer.trim());
-  config.relayServer = removeEndSlash(config.relayServer.trim());
-  config.apiServer = removeEndSlash(config.apiServer.trim());
-  config.key = config.key.trim();
+//   setServerConfig(
+//         null,
+//         [RxString(""), RxString(""), RxString("")],
+//         ServerConfig(
+//             idServer: "47.238.129.240:23338",
+//             relayServer: "",
+//             apiServer: "",
+//             key: "OiXchvybE0wb3AbvRFhq2PHSbAXVpGCPxMYNbUWD9bY="));
+  // asher 禁止使用本地配置连接
+  config.idServer = removeEndSlash("47.238.129.240:23338");
+  config.relayServer = removeEndSlash("");
+  config.apiServer = removeEndSlash("");
+  config.key = "OiXchvybE0wb3AbvRFhq2PHSbAXVpGCPxMYNbUWD9bY=";
   if (controllers != null) {
     controllers[0].text = config.idServer;
     controllers[1].text = config.relayServer;

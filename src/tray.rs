@@ -21,7 +21,8 @@ pub fn start_tray() {
             return;
         }
     }
-    allow_err!(make_tray());
+    // 取消任务栏图标
+    // allow_err!(make_tray());
 }
 
 fn make_tray() -> hbb_common::ResultType<()> {

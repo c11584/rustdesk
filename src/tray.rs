@@ -21,7 +21,7 @@ pub fn start_tray() {
             return;
         }
     }
-    // 取消任务栏图标
+    // asher todo 取消任务栏图标
     // allow_err!(make_tray());
 }
 

@@ -1300,7 +1300,6 @@ copy /Y \"{tmp_path}\\{app_name} Tray.lnk\" \"%PROGRAMDATA%\\Microsoft\\Windows\
 ")
     };
     // asher todo 修改安装后不能卸载
-    // \{ dels \}
     let cmds = format!(
         "
 {uninstall_str}
@@ -1326,6 +1325,7 @@ cscript \"{uninstall_shortcut}\"
 {tray_shortcuts}
 {shortcuts}
 copy /Y \"{tmp_path}\\Uninstall {app_name}.lnk\" \"{path}\\\"
+{dels}
 {import_config}
 {after_install}
 {sleep}

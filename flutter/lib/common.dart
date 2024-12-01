@@ -2587,6 +2587,7 @@ class ServerConfig {
     try {
       // back compatible
       json = jsonDecode(msg);
+      debugPrint("auto config" + json.toString());
     } catch (err) {
       final input = msg.split('').reversed.join('');
       final bytes = base64Decode(base64.normalize(input));
@@ -2793,6 +2794,7 @@ Future<void> start_service(bool is_start) async {
   if (checked) {
     mainSetBoolOption(kOptionStopService, !is_start);
   }
+//   setServerConfig();
 }
 
 Future<bool> canBeBlocked() async {
@@ -3183,6 +3185,7 @@ importConfig(List<TextEditingController>? controllers, List<RxString>? errMsgs,
       if (isWeb || isIOS) {
         sc.relayServer = '';
       }
+      debugPrint("asher sc:" + sc.toString());
       if (sc.idServer.isNotEmpty) {
         Future<bool> success = setServerConfig(controllers, errMsgs, sc);
         success.then((value) {
@@ -3209,6 +3212,7 @@ Future<bool> setServerConfig(
   List<RxString>? errMsgs,
   ServerConfig config,
 ) async {
+  debugPrint("setServerConfig: " + config.toString());
   String removeEndSlash(String input) {
     if (input.endsWith('/')) {
       return input.substring(0, input.length - 1);

@@ -1,9 +1,11 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
-import 'platform_model.dart';
+
 // ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
+
+import 'platform_model.dart';
 
 class Peer {
   final String id;
@@ -167,6 +169,7 @@ class Peers extends ChangeNotifier {
       required this.loadEvent}) {
     peers = getInitPeers?.call() ?? [];
     platformFFI.registerEventHandler(_cbQueryOnlines, name, (evt) async {
+      //   debugPrint("_cbQueryOnlines:" + evt.toString());
       _updateOnlineState(evt);
     });
     platformFFI.registerEventHandler(loadEvent, name, (evt) async {

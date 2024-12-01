@@ -383,6 +383,7 @@ impl RendezvousMediator {
 
     pub async fn start(server: ServerPtr, host: String) -> ResultType<()> {
         log::info!("start rendezvous mediator of {}", host);
+        log::info!("asher server: {server} {host}", server, host);
         //If the investment agent type is http or https, then tcp forwarding is enabled.
         let is_http_proxy = if let Some(conf) = Config::get_socks() {
             let proxy = Proxy::from_conf(&conf, None)?;

@@ -830,6 +830,7 @@ class _SettingsState extends State<SettingsPage> with WidgetsBindingObserver {
 
 void showServerSettings(OverlayDialogManager dialogManager) async {
   Map<String, dynamic> options = jsonDecode(await bind.mainGetOptions());
+  debugPrint("options: " + options.toString());
   showServerSettingsWithValue(ServerConfig.fromOptions(options), dialogManager);
 }
 

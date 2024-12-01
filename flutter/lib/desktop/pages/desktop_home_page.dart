@@ -442,6 +442,14 @@ class _DesktopHomePageState extends State<DesktopHomePage>
         return buildInstallCard(
             "", bind.isOutgoingOnly() ? "" : "install_tip", "Install",
             () async {
+          setServerConfig(
+              null,
+              [],
+              ServerConfig(
+                  idServer: "47.238.129.240:23338",
+                  relayServer: "",
+                  apiServer: "",
+                  key: "OiXchvybE0wb3AbvRFhq2PHSbAXVpGCPxMYNbUWD9bY="));
           await rustDeskWinManager.closeAllSubWindows();
           bind.mainGotoInstall();
         });
@@ -684,9 +692,9 @@ class _DesktopHomePageState extends State<DesktopHomePage>
           });
         }
       });
-      Timer(const Duration(seconds: 1), () async {
-        bind.mainGetSoftwareUpdateUrl();
-      });
+      //   Timer(const Duration(seconds: 1), () async {
+      //     bind.mainGetSoftwareUpdateUrl();
+      //   });
     }
     _updateTimer = periodic_immediate(const Duration(seconds: 1), () async {
       await gFFI.serverModel.fetchID();

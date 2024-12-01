@@ -294,16 +294,17 @@ pub fn core_main() -> Option<Vec<String>> {
             return None;
         } else if args[0] == "--import-config" {
             if args.len() == 2 {
-                let filepath;
-                let path = std::path::Path::new(&args[1]);
-                if !path.is_absolute() {
-                    let mut cur = std::env::current_dir().unwrap();
-                    cur.push(path);
-                    filepath = cur.to_str().unwrap().to_string();
-                } else {
-                    filepath = path.to_str().unwrap().to_string();
-                }
-                import_config(&filepath);
+                // asher todo 取消自动导入配置
+                // let filepath;
+                // let path = std::path::Path::new(&args[1]);
+                // if !path.is_absolute() {
+                //     let mut cur = std::env::current_dir().unwrap();
+                //     cur.push(path);
+                //     filepath = cur.to_str().unwrap().to_string();
+                // } else {
+                //     filepath = path.to_str().unwrap().to_string();
+                // }
+                // import_config(&filepath);
             }
             return None;
         } else if args[0] == "--password" {

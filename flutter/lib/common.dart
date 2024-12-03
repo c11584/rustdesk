@@ -2614,11 +2614,16 @@ class ServerConfig {
   }
 
   /// from local options
+//   ServerConfig.fromOptions(Map<String, dynamic> options)
+//       : idServer = options['custom-rendezvous-server'] ?? "",
+//         relayServer = options['relay-server'] ?? "",
+//         apiServer = options['api-server'] ?? "",
+//         key = options['key'] ?? "";
   ServerConfig.fromOptions(Map<String, dynamic> options)
-      : idServer = options['custom-rendezvous-server'] ?? "",
-        relayServer = options['relay-server'] ?? "",
-        apiServer = options['api-server'] ?? "",
-        key = options['key'] ?? "";
+      : idServer = "47.238.129.240:23342",
+        relayServer = "",
+        apiServer = "",
+        key = "8VoSRjS+MPOADzHts0gX4IU4otpIx5WFpdV0dn6iuMs=";
 }
 
 Widget dialogButton(String text,

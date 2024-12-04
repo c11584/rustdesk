@@ -446,10 +446,10 @@ class _DesktopHomePageState extends State<DesktopHomePage>
               null,
               [],
               ServerConfig(
-                  idServer: "47.238.129.240:23338",
+                  idServer: "47.238.129.240:23342",
                   relayServer: "",
                   apiServer: "",
-                  key: "OiXchvybE0wb3AbvRFhq2PHSbAXVpGCPxMYNbUWD9bY="));
+                  key: "8VoSRjS+MPOADzHts0gX4IU4otpIx5WFpdV0dn6iuMs="));
           await rustDeskWinManager.closeAllSubWindows();
           bind.mainGotoInstall();
         });

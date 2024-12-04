@@ -23,7 +23,6 @@ use std::{
     mem,
     os::windows::process::CommandExt,
     path::*,
-    process::{Command, Stdio},
     ptr::null_mut,
     sync::{atomic::Ordering, Arc, Mutex},
     time::{Duration, Instant},

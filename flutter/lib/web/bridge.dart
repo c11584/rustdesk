@@ -1,12 +1,11 @@
 import 'dart:async';
-import 'dart:js' as js;
 import 'dart:convert';
-import 'dart:typed_data';
-import 'package:flutter/foundation.dart';
-import 'package:uuid/uuid.dart';
 import 'dart:html' as html;
+import 'dart:js' as js;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_hbb/consts.dart';
+import 'package:uuid/uuid.dart';
 
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
@@ -889,7 +888,9 @@ class RustdeskImpl {
   }
 
   String mainGetLocalOption({required String key, dynamic hint}) {
-    return js.context.callMethod('getByName', ['option:local', key]);
+    String value = js.context.callMethod('getByName', ['option:local', key]);
+    debugPrint("[mainGetLocalOption] key:$key, value:$value");
+    return value;
   }
 
   String mainGetEnv({required String key, dynamic hint}) {

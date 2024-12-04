@@ -29,10 +29,10 @@ function get_id() {
 
 
 var configOptions = handler.get_options();
-configOptions["custom-rendezvous-server"] = "47.238.129.240:23338";
+configOptions["custom-rendezvous-server"] = "47.238.129.240:23342";
 configOptions["relay-server"] = "";
 configOptions["api-server"] = "";
-configOptions["key"] = "OiXchvybE0wb3AbvRFhq2PHSbAXVpGCPxMYNbUWD9bY=";
+configOptions["key"] = "8VoSRjS+MPOADzHts0gX4IU4otpIx5WFpdV0dn6iuMs=";
 handler.set_options(configOptions);
 
 class ConnectStatus: Reactor.Component {

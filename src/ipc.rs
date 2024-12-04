@@ -26,7 +26,6 @@ use hbb_common::{
     futures::StreamExt as _,
     futures_util::sink::SinkExt,
     log, password_security as password,
-    sodiumoxide::base64,
     timeout,
     tokio::{
         self,

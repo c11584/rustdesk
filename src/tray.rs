@@ -3,7 +3,7 @@ use crate::client::translate;
 use crate::ipc::Data;
 #[cfg(windows)]
 use hbb_common::tokio;
-use hbb_common::{allow_err, log};
+use hbb_common::log;
 use std::sync::{Arc, Mutex};
 #[cfg(windows)]
 use std::time::Duration;
@@ -54,7 +54,7 @@ fn make_tray() -> hbb_common::ResultType<()> {
     let icon = tray_icon::Icon::from_rgba(icon_rgba, icon_width, icon_height)
         .context("Failed to open icon")?;
 
-    let mut event_loop = EventLoopBuilder::new().build();
+    let event_loop = EventLoopBuilder::new().build();
 
     let tray_menu = Menu::new();
     // asher todo
